@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <table>
+
+        <tbody>
+            <tr>
+                <td><button class="btn btn-primary btn-custom" id="pmonth" type="submit">previous month</button></td>
+                <td id="calendar" class="table table-bordered">{{ month | safe }}</td>
+                <td><button class="btn btn-primary btn-custom" id="nmonth" type="submit">next month</button></td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+{% endblock %}
+

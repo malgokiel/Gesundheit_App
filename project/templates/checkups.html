@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Checkups
+{% endblock %}
+
+{% block main %}
+    <form action="/checkups" method="post" class="row gy-2 gx-3 align-items-center">
+
+        <div class="col-auto centered">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto frm-custom" id="checkupname" name="checkupname" placeholder="Checkup name" type="text">
+        </div>
+        <div>
+            <button class="btn btn-primary btn-custom frm-custom col-auto centered" name="action" value="add" type="submit">Add checkup type to the database</button>
+        </div>
+
+    </form>
+
+    <form action="/checkups" method="post" class="row gy-2 gx-3 align-items-center">
+
+        <div class="col-auto centered">
+            <label for="checkup">Select:</label>
+            <select class="form-control mx-auto w-auto frm-custom" name="checkup" id="checkup">
+                <option disabled selected>Checkup</option>
+                {% for checkup_name in checkup_names %}
+                    <option value="{{checkup_name}}">{{ checkup_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-auto centered">
+            <label for="last_checkup">Latest checkup date:</label>
+            <input class="form-control mx-auto w-auto frm-custom" id="last_checkup" name="last_checkup" type="date">
+        </div>
+        <div class="col-auto centered">
+            <label for="next_checkup">Next checkup date:</label>
+            <input class="form-control mx-auto w-auto frm-custom" id="next_checkup" name="next_checkup" type="date">
+        </div>
+        <button class="btn btn-primary btn-custom frm-custom col-auto centered" name="action" value="update" type="submit">Update checkup dates</button>
+
+    </form>
+
+    <form action="/checkups" method="post" class="row gy-2 gx-3 align-items-center">
+
+        <button class="btn btn-primary btn-custom frm-custom col-auto centered" name="action" value="history" type="submit">See history</button>
+
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class=flashes>
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Checkup</th>
+                <th>Latest checkup</th>
+                <th>Next checkup *</th>
+                {% if action == 'history' %}
+                <th>Delete record</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for date in dates %}
+                <tr>
+                    <td>{{ date.checkup_name }}</td>
+                    <td>{{ date.last_checkup }}</td>
+                    <td>{{ date.next_checkup }}</td>
+                    {% if action == 'history' %}
+                    <td>
+                        <form action="/checkups" method="post">
+                            <button class="btn-close btn-right" aria-label="Close" name="action" value="delete-{{date.id}}" type="submit">{% for date in dates %}{% endfor %}</button>
+                        </form>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    <div>
+        <p id="disclaimer">* Recommended checkup cycle is calculated based on your age. Every 3 years for users below 50 and every year for users above 50. Dental checkup is recommended once a year for everyone. Remember, these are just standard recommendations, always consult with your doctor in case you should follow a different appointment frequency.</p>
+    </div>
+{% endblock %}

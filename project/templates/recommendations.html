@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Doctor's advice
+{% endblock %}
+
+{% block main %}
+    <form action="/recommendations" method="post">
+
+        <div class="mb-3">
+            <select class="form-control mx-auto w-auto frm-custom" name="checkup">
+                <option disabled selected>Checkup</option>
+                {% for checkup_name in checkup_names %}
+                    <option value="{{checkup_name}}">{{ checkup_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+           <textarea name="text" placeholder="Doctor's recommendation" class="frm-custom"></textarea>
+        </div>
+        <button class="btn btn-primary btn-custom" name="action" value="add" type="submit">add note</button>
+
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class=flashes>
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <form action="/recommendations" method="post">
+
+        <div class="wrapper">
+            {% for advice in advices %}
+            <div class="card text-dark bg-custom mb-3" style="max-width: 20rem;">
+                <button class="btn-close btn-right" aria-label="Close" name="action" value="delete-{{advice.id}}" type="submit"></button>
+                <div class="card-body">
+                <h5 class="card-title">{{advice.checkup_name}}</h5>
+                <p class="card-text">{{advice.recommendation}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </form>
+{% endblock %}

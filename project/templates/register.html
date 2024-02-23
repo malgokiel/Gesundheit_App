@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+    {% if message %}
+    <p class="mssg">{{ message }}</p>
+    {% endif %}
+
+    <form action="/register" method="post">
+
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto frm-custom" id="username" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="mb-3">
+            <label for="BD">Date of birth:</label>
+            <input data-bs-toggle="tooltip" data-bs-placement="right" title="Why do we ask: the cycle of recommended checkups depends on this information." autocomplete="off" autofocus class="form-control mx-auto w-auto frm-custom" id="BD" name="BD" placeholder="Age (min. 18)" type="date">
+        </div>
+        <div class="mb-3">
+            <select data-bs-toggle="tooltip" data-bs-placement="right" title="Why do we ask: depending on your gender a different list of reccomended checkups will be rendered. If you prefer not to say the list will consist of checkups recommended for all genders." class="form-control mx-auto w-auto frm-custom" name="gender">
+                <option disabled selected>Gender</option>
+                    <option value="f">Female</option>
+                    <option value="m">Male</option>
+                    <option value="e">Prefer not to say</option>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto frm-custom" id="password" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto frm-custom" id="confirmation" name="confirmation" placeholder="Password (repeat)" type="password">
+        </div>
+        <button class="btn btn-primary btn-custom" type="submit">Register</button>
+
+    </form>
+{% endblock %}

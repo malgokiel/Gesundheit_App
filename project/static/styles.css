@@ -1,0 +1,153 @@
+@font-face {
+    font-family: "Reenie-Beanie";
+    src:
+    url("fonts/ReenieBeanie-Regular.ttf");
+
+    /* font source: https://fonts.google.com/specimen/Reenie+Beanie?preview.text=Gesundheit!&classification=Handwriting */
+}
+
+
+#brand {
+    font-family: "Reenie-Beanie";
+    font-size: 50px;
+}
+
+
+body {
+    background-image: url('/static/medical-563427_1920.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    /* img source: https://pixabay.com/pl/photos/medyczny-spotkanie-lekarz-563427/ */
+}
+
+
+/* tables across the page */
+table {
+    background-color: white;
+    width: 100%;
+}
+
+
+table th, table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+
+tbody tr:nth-of-type(odd) {
+    background-color: #8FD1D0;
+}
+
+
+/* style of the forms in checkup.html */
+.centered {
+    width: 30%;
+    margin: 10px auto;
+    text-align: center;
+}
+
+
+/* order and style of the notes in recommendations.html */
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+
+.bg-custom {
+    border-color: #000000;
+    background-color: #8FD1D0;
+}
+
+
+/* customized buttons across the page */
+.btn-custom {
+    background-color: #306F70;
+    border-color: #306F70;
+}
+
+
+.btn-custom:hover {
+    background-color: #48A7A8;
+    border-color: #48A7A8;
+}
+
+
+.btn-custom:focus, btn-custom:active, .btn-custom:visited {
+    background-color: #48A7A8;
+    border-color: #48A7A8;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, .5);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+
+.btn-right {
+    margin-left: auto;
+}
+
+
+#nmonth {
+    transform: rotate(90deg);
+}
+
+
+#pmonth {
+    transform: rotate(270deg);
+}
+
+
+/* form styles */
+.frm-custom {
+    margin: 10px auto;
+}
+
+
+.frm-custom:focus {
+    border-color: #000000;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, .5);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+
+.flashes p, .mssg {
+    background-color: #FFFFFF;
+    width: 25%;
+    margin: 10px auto;
+}
+
+
+textarea {
+    height: 100px;
+    width: 50%;
+}
+
+
+/* calendar style */
+.event-day {
+    background-color: #FFF605;
+    font-weight: bold;
+}
+
+
+.day {
+    width: 100px;
+    height: 70px;
+    border: 1px solid black;
+}
+
+
+#calendar tr:nth-of-type(odd) {
+    background-color: #FFFFFF;
+}
+
+
+/* other */
+#disclaimer {
+    background-color: #8FD1D0;
+    font-weight: bold;
+}
